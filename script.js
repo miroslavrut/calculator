@@ -74,4 +74,6 @@ equal.addEventListener("click", e => {
 
 document.querySelector(".clear").addEventListener("click", e => {
     display.textContent = "0";
+    calculator.dataset.firstVal = undefined;
+    calculator.dataset.previous = "";
 });
