@@ -22,7 +22,8 @@ numBtns.forEach((button) => {
 
 opBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
-        if(calculator.dataset.firstVal) {
+        previous = calculator.dataset.previous;
+        if(calculator.dataset.firstVal && !previous) {
             calculator.dataset.firstVal = operate(
                 calculator.dataset.firstVal, calculator.dataset.op,
                 display.textContent
@@ -54,7 +55,6 @@ function operate(a, op, b) {
     }
 }
 
-
 dot.addEventListener("click", e => {
     if (calculator.dataset.previous === "operator") {
         display.textContent = "0";
@@ -66,13 +66,15 @@ dot.addEventListener("click", e => {
 })
 
 equal.addEventListener("click", e => {
+    
     const firstValue = calculator.dataset.firstVal;
+    if(!firsValue) return;
     const operator = calculator.dataset.op;
     const secondValue = display.textContent;
    
     const result = operate(firstValue, operator, secondValue);
     display.textContent = (result + "").slice(0,9);
-    
+    calculator.dataset.firstVal = display.textContent;
     calculator.dataset.previous = "equal";
 })
 
