@@ -22,9 +22,18 @@ numBtns.forEach((button) => {
 
 opBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
+        if(calculator.dataset.firstVal) {
+            calculator.dataset.firstVal = operate(
+                calculator.dataset.firstVal, calculator.dataset.op,
+                display.textContent
+            );
+            calculator.dataset.op = e.target.textContent;
+        }
+        else {
         calculator.dataset.firstVal = display.textContent;
-        calculator.dataset.previous = "operator";
         calculator.dataset.op = e.target.textContent;
+        }
+        calculator.dataset.previous = "operator";
     })
 });
 
@@ -32,7 +41,7 @@ function operate(a, op, b) {
     const firstVal = parseFloat(a);
     const secondVal = parseFloat(b);
     if(op === "+") {
-        return firstVal + secondVal;
+        return firstVal - (-secondVal);
    }
     else if(op === "-") {
         return firstVal - secondVal;
@@ -69,7 +78,7 @@ equal.addEventListener("click", e => {
 
 document.querySelector(".clear").addEventListener("click", e => {
     display.textContent = "0";
-    calculator.dataset.firstVal = undefined;
+    calculator.dataset.firstVal = "";
     calculator.dataset.previous = "";
 });
 
