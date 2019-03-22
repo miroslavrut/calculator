@@ -29,25 +29,20 @@ opBtns.forEach((button) => {
 });
 
 function operate(a, op, b) {
-   let result = "";
-
-   if(op === "+") {
-        result = parseFloat(a) + parseFloat(b);
+    const firstVal = parseFloat(a);
+    const secondVal = parseFloat(b);
+    if(op === "+") {
+        return firstVal + secondVal;
    }
-
-   else if(op === "-") {
-        result = parseFloat(a) - parseFloat(b);
-   }
-
-   else if(op === "*") {
-        result = parseFloat(a) * parseFloat(b);
+    else if(op === "-") {
+        return firstVal - secondVal;
     }
-
+    else if(op === "*") {
+        return firstVal * secondVal;
+    }
     else if(op === "/") {
-        result = parseFloat(a) / parseFloat(b);
+        return firstVal / secondVal;
     }
-    
-    return result;
 }
 
 
@@ -76,4 +71,13 @@ document.querySelector(".clear").addEventListener("click", e => {
     display.textContent = "0";
     calculator.dataset.firstVal = undefined;
     calculator.dataset.previous = "";
+});
+
+document.querySelector(".bckSpace").addEventListener("click", e => {
+    const disp = display.textContent;
+    if(disp.length === 1){
+        display.textContent = "0";
+    }
+    else 
+        display.textContent = disp.substring(0, disp.length-1);
 });
