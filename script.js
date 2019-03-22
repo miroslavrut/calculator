@@ -66,8 +66,12 @@ equal.addEventListener("click", e => {
     const operator = calculator.dataset.op;
     const secondValue = display.textContent;
    
-    const calcValue = operate(firstValue, operator, secondValue);
-    display.textContent = (calcValue + "").slice(0,9);
+    const result = operate(firstValue, operator, secondValue);
+    display.textContent = (result + "").slice(0,9);
     
     calculator.dataset.previous = "equal";
 })
+
+document.querySelector(".clear").addEventListener("click", e => {
+    display.textContent = "0";
+});
