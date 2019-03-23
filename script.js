@@ -68,7 +68,7 @@ dot.addEventListener("click", e => {
 equal.addEventListener("click", e => {
     
     const firstValue = calculator.dataset.firstVal;
-    if(!firsValue) return;
+    if(!firstValue) return;
     const operator = calculator.dataset.op;
     const secondValue = display.textContent;
    
